@@ -1,0 +1,18 @@
+FROM node:16
+
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# Expose port
+EXPOSE 3000
+
+# Keep container running
+CMD ["tail", "-f", "/dev/null"]

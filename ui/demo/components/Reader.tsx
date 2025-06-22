@@ -36,9 +36,7 @@ export const Reader: React.FunctionComponent<RouteComponentProps> = () => {
   // ref for the scrollable region where the pages are rendered
   const pdfScrollableRef = React.createRef<HTMLDivElement>();
 
-  const samplePdfUrl = 'https://arxiv.org/pdf/2112.07873.pdf';
-  const sampleS2airsUrl =
-    'http://s2airs.prod.s2.allenai.org/v1/pdf_data?pdf_sha=9b79eb8d21c8a832daedbfc6d8c31bebe0da3ed5';
+  const samplePdfUrl = '/pdfs/2409.13740v2.pdf';
 
   React.useEffect(() => {
     // If data has been loaded then return directly to prevent sending multiple requests
@@ -46,11 +44,58 @@ export const Reader: React.FunctionComponent<RouteComponentProps> = () => {
       return;
     }
 
-    fetch(sampleS2airsUrl, { referrer: '' })
-      .then(response => response.json())
-      .then(data => {
-        setRawCitations(data[0].citations);
-      });
+    // Use mock citation data to demonstrate citation features
+    const mockCitations: RawCitation[] = [
+      {
+        citedPaperId: "mock-paper-1",
+        mentions: [
+          {
+            boundingBoxes: [
+              {
+                page: 1,
+                top: 0.2,
+                left: 0.1,
+                height: 0.02,
+                width: 0.3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        citedPaperId: "mock-paper-2", 
+        mentions: [
+          {
+            boundingBoxes: [
+              {
+                page: 1,
+                top: 0.4,
+                left: 0.1,
+                height: 0.02,
+                width: 0.25
+              }
+            ]
+          }
+        ]
+      },
+      {
+        citedPaperId: "mock-paper-3",
+        mentions: [
+          {
+            boundingBoxes: [
+              {
+                page: 2,
+                top: 0.3,
+                left: 0.1,
+                height: 0.02,
+                width: 0.35
+              }
+            ]
+          }
+        ]
+      }
+    ];
+    setRawCitations(mockCitations);
   }, [pageDimensions]);
 
   React.useEffect(() => {

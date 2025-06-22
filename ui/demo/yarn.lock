@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@allenai/pdf-components@file:../library/dist/allenai-pdf-components-1.0.1.tgz":
+  version "1.0.1"
+  resolved "file:../library/dist/allenai-pdf-components-1.0.1.tgz#30e1f5f77e9b6794f4557221f9c9706e438e8606"
+
 "@ant-design/colors@^6.0.0":
   version "6.0.0"
   resolved "https://registry.npmjs.org/@ant-design/colors/-/colors-6.0.0.tgz"

@@ -42,11 +42,11 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: 'public/**/*',
+          from: 'public',
+          to: '.',
           filter: absPathToFile => {
             return absPathToFile !== path.resolve(__dirname, 'public', 'index.html');
           },
-          transformPath: p => p.replace(/^public\//, ''),
         },
         {
           from: 'node_modules/pdfjs-dist/cmaps/',
@@ -62,15 +62,18 @@ module.exports = {
   devServer: {
     hot: true,
     host: '0.0.0.0',
-    // The `ui` host is used by the reverse proxy when requesting the UI while working locally.
-    allowedHosts: ['ui'],
-    historyApiFallback: true,
-    port: 3000,
+    // Allow specific hosts to connect
+    allowedHosts: ['all', 'work-1-fpfylufenrbbyyix.prod-runtime.all-hands.dev'],
+    disableHostCheck: true,
+    historyApiFallback: false,
+    port: 12000,
     // Apparently webpack's dev server doesn't write files to disk. This makes it hard to
     // debug the build process, as there's no way to examine the output. We change this
     // setting so that it's easier to inspect what's built. This in theory might make things
     // slower, but it's probably worth the extra nanosecond.
     writeToDisk: true,
     lazy: false,
+    contentBase: path.join(__dirname, 'build'),
+    publicPath: '/',
   },
 };

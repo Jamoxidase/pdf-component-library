@@ -16,7 +16,7 @@ services:
     proxy:
         build: ./proxy
         ports:
-            - 8080:8080
+            - 12000:8080
         depends_on:
             - ui
 volumes:
